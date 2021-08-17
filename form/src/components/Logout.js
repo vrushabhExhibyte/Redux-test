@@ -6,7 +6,6 @@ import { logout } from "../features/userSlice";
 const Logout = () => {
   const dispatch = useDispatch();
   const handleLogout = (e) => {
-    e.preventDeafult();
     dispatch(logout());
   };
   return (
@@ -14,7 +13,7 @@ const Logout = () => {
       <h1>
         welcome
         <span className="user__name">Exhibyte Solution</span>
-        <button className="logout__button" onClick={(e) => handleLogout(e)}>
+        <button className="logout__button" onClick={handleLogout}>
           Logout
         </button>
       </h1>
