@@ -11,8 +11,7 @@ const Logout = () => {
   return (
     <div className="logout">
       <h1>
-        welcome
-        <span className="user__name">Exhibyte Solution</span>
+        <span className="user__name"> welcome Exhibyte Solution</span>
         <button className="logout__button" onClick={handleLogout}>
           Logout
         </button>
