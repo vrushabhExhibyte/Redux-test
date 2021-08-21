@@ -7,16 +7,17 @@
   font-family: "Inter";
 }
 .logout__button {
-  min-width: 300px;
+  min-width: 210px;
   padding: 17px 30px;
   margin-top: 20px;
   background: black;
   border: none;
   color: white;
-  font-size: 14px;
+  font-size: 21px;
   font-family: "Inter";
   border-radius: 3px;
 }
 .user__name {
   color: black;
+  font-size: 21px;
 }
