@@ -21,5 +21,3 @@ const Logout = () => {
 };
 
 export default Logout;
-
-// logout pages
