@@ -6,6 +6,8 @@ import { useSelector } from "react-redux";
 import Signup from "./components/Signup";
 import { Route, Switch } from "react-router-dom";
 import Amplify from "aws-amplify";
+import Window from "./components/Window";
+import Unable from "./components/Unable";
 
 Amplify.configure({
   aws_project_region: "us-east-1",
@@ -19,8 +21,10 @@ const App = () => {
   return (
     <>
       <Switch>
-        <Route exact path="/" component={Login}></Route>
+        <Route exact path="/" component={Window}></Route>
+        <Route exact path="/login" component={Login}></Route>
         <Route exact path="/signup" component={Signup}></Route>
+        <Route exact path="/unable" component={Unable}></Route>
       </Switch>
     </>
   );
