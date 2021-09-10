@@ -7,12 +7,30 @@ import { useHistory } from "react-router-dom";
 import { Auth } from "aws-amplify";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import GitHubIcon from "@material-ui/icons/GitHub";
-import LinkedInIcon from "@material-ui/icons/LinkedIn";
+import GoogleLogin from "react-google-login";
+import FacebookLogin from "react-facebook-login";
+import GitHubLogin from "react-github-login";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   let history = useHistory();
+
+  const responseGoogle = (response) => {
+    console.log(response);
+    console.log(response.profileObj);
+  };
+
+  const responseFacebook = (response) => {
+    console.log(response);
+  };
+
+  const componentClicked = (data) => {
+    console.log(data);
+  };
+  const onSuccess = (response) => {
+    console.log(response);
+  };
 
   const clickButton = () => {
     history.push("/signup");
@@ -131,7 +149,6 @@ const Login = () => {
             <div className="text-sm text-center">
               Don't have an account?
               <a
-                // href="#"
                 onClick={clickButton}
                 className="cursor-pointer font-medium text-indigo-600 hover:text-indigo-500 text-center"
               >
@@ -140,26 +157,31 @@ const Login = () => {
             </div>
           </form>
           <div className="flex flex-col justify-center">
-            <p className="mx-auto">Or continue with</p>
-            <div className="grid grid-cols-3 gap-5 px-8 py-4">
-              <a
-                className="inline-flex justify-center p-1 border border-gray-300 rounded"
-                href="https://www.facebook.com/"
+            <p className="mx-auto">OR LOGIN WITH</p>
+            <div className="grid grid-cols-3 gap-5 px-8 py-4 ">
+              <FacebookLogin
+                className=" justify-center p-1 border border-gray-300 rounded"
+                appId="343306320855827"
+                autoLoad={false}
+                fields="name,email,picture"
+                onClick={componentClicked}
+                callback={responseFacebook}
               >
                 <FacebookIcon />
-              </a>
-              <a
-                href="https://github.com/vrushabhExhibyte"
-                className="inline-flex justify-center p-1 border border-gray-300 rounded inline-flex "
-              >
-                <GitHubIcon />
-              </a>
-              <a
-                className="inline-flex justify-center p-1 border border-gray-300 rounded"
-                href="https://www.linkedin.com/signup"
-              >
-                <LinkedInIcon />
-              </a>
+              </FacebookLogin>
+              <GoogleLogin
+                className=" justify-center p-1 border border-gray-300 rounded"
+                clientId="346399347904-8aj5ln745c4gg86da8rj920vf33ik0sq.apps.googleusercontent.com"
+                buttonText="LOGIN WITH GOOGLE"
+                onSuccess={responseGoogle}
+                onFailure={responseGoogle}
+                cookiePolicy={"single_host_origin"}
+              ></GoogleLogin>
+              <GitHubLogin
+                className=" justify-center p-1 border border-gray-300 rounded inline-flex "
+                clientId="06daa30f73149256e5f"
+                onSuccess={onSuccess}
+              ></GitHubLogin>
             </div>
           </div>
         </div>

@@ -2,7 +2,6 @@ import "./App.css";
 import Login from "./components/Login";
 import { selectUser } from "./features/userSlice";
 import { useSelector } from "react-redux";
-// import Logout from "./components/Logout";
 import Signup from "./components/Signup";
 import { Route, Switch } from "react-router-dom";
 import Amplify from "aws-amplify";
