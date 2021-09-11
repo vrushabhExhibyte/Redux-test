@@ -5,10 +5,12 @@ import { login } from "../features/userSlice";
 import { LockClosedIcon } from "@heroicons/react/solid";
 import { useHistory } from "react-router-dom";
 import { Auth } from "aws-amplify";
-import FacebookIcon from "@material-ui/icons/Facebook";
+import { ReactComponent as FacebookIcon } from "../image/facebookIcon.svg";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import GoogleLogin from "react-google-login";
-import FacebookLogin from "react-facebook-login";
+import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
+import { ReactComponent as GoogleIcon } from "../image/googleIcon.svg";
+
 import GitHubLogin from "react-github-login";
 
 const Login = () => {
@@ -157,30 +159,51 @@ const Login = () => {
             </div>
           </form>
           <div className="flex flex-col justify-center">
-            <p className="mx-auto">OR LOGIN WITH</p>
-            <div className="grid grid-cols-3 gap-5 px-8 py-4 ">
+            <div className="relative mb-6">
+              <hr className="absolute w-full top-1/2 transform -translate-y-1/2 bg-black" />
+              <p className="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 bg-gray-50 px-2 text-xs">
+                OR LOGIN WITH
+              </p>
+            </div>
+            <div className="flex justify-between p-2 w-48 mx-auto">
               <FacebookLogin
-                className=" justify-center p-1 border border-gray-300 rounded"
                 appId="343306320855827"
                 autoLoad={false}
                 fields="name,email,picture"
                 onClick={componentClicked}
                 callback={responseFacebook}
+                render={(renderProps) => (
+                  <button
+                    onClick={renderProps.onClick}
+                    className="w-12 h-12 flex justify-center items-center rounded-full"
+                  >
+                    <FacebookIcon />
+                  </button>
+                )}
               >
                 <FacebookIcon />
               </FacebookLogin>
               <GoogleLogin
-                className=" justify-center p-1 border border-gray-300 rounded"
                 clientId="346399347904-8aj5ln745c4gg86da8rj920vf33ik0sq.apps.googleusercontent.com"
-                buttonText="LOGIN WITH GOOGLE"
                 onSuccess={responseGoogle}
                 onFailure={responseGoogle}
                 cookiePolicy={"single_host_origin"}
+                buttonText=""
+                render={(renderProps) => (
+                  <button
+                    onClick={renderProps.onClick}
+                    disabled={renderProps.disabled}
+                    className="w-12 h-12 flex justify-center items-center bg-gray-200 rounded-full"
+                  >
+                    <GoogleIcon />
+                  </button>
+                )}
               ></GoogleLogin>
               <GitHubLogin
-                className=" justify-center p-1 border border-gray-300 rounded inline-flex "
+                className="w-12 h-12 flex justify-center items-center bg-black rounded-full"
                 clientId="06daa30f73149256e5f"
                 onSuccess={onSuccess}
+                buttonText={<GitHubIcon className="z-10 filter invert" />}
               ></GitHubLogin>
             </div>
           </div>
